@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: BitNodes-Snapshot
+  description: |-
+    This API fetches the snapshot of the active nodes of the bitcoin network.
+
+     Some useful links:
+     - [BitNodes API Documentation](https://bitnodes.io/api/)
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Bitnodes
+  url: https://bitnodes.io/
+servers:
+  - url: https://bitnodes.io/api/v1/
+tags:
+  - name: Snapshots
+    description: Operations related to fetching network snapshots.
+  - name: Nodes
+    description: Operations that specifically deal with node information.
+  - name: Network
+    description: Operations providing insights into the overall state of the Bitcoin network.
+paths:
+  /snapshots/latest:
+    get:
+      tags:
+        - Snapshots
+      summary: Fetch the latest network snapshot
+      description: Fetch the latest network snapshot and providing the node details of the active nodes.
+      responses:
+        "200":
+          description: Successful fetching of network snapshot.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Snapshot"
+        "401":
+          description: "Unauthorized. Authentication is required to access the resource."
+        "429":
+          description: Too many request in 24 hrs.
+        "500":
+          description: "Internal server error."
+          content: # Add content for the 500 response
+            application/json: # Assuming the response is in JSON format
+              schema:
+                type: "object"
+                properties:
+                  error:
+                    type: "string"
+                    description: "Description of the internal server error."
+components:
+  schemas:
+    Snapshot:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          examples: [1710282079]
+        total_nodes:
+          type: integer
+          format: int64
+          examples: [18515]
+        latest_height:
+          type: number
+          format: int64
+          examples: [834418]
+        nodes:
+          type: object
+          $ref: "#/components/schemas/Nodes"
+    Nodes:
+      type: array
+      items:
+        anyOf:
+          - type: integer
+          - type: string
+          - type: number
+          - type: number
+          - type: string
+          - type: number
+          - type: string
+          - type: string
+          - type: string
+          - type: string
+      maxItems: 10
+      examples:
+        [
+          "91.209.51.131:8333":
+            [
+              70016,
+              "/Satoshi:0.21.0/",
+              1710345617,
+              1033,
+              834540,
+              "131.51.209.91.it-tv.org",
+              834542,
+              "UA",
+              50.4522,
+              30.5287,
+              "Europe/Kyiv",
+              "AS48239",
+              "Scientific-Production Enterprise Information Technologies Ltd",
+            ],
+        ]
