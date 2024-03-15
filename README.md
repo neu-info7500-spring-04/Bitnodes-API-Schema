@@ -29,7 +29,32 @@ The response for the `/snapshots/latest` endpoint includes the following fields:
 
 ## Example Response
 
-json { "timestamp": 1710282079, "total_nodes": 18515, "latest_height": 834418, "nodes": [ { "91.209.51.131:8333": [ 70016, "/Satoshi:0.21.0/", 1710345617, 1033, 834540, "131.51.209.91.it-tv.org", 834542, "UA", 50.4522, 30.5287, "Europe/Kyiv", "AS48239", "Scientific-Production Enterprise Information Technologies Ltd" ] } ] }
+```json
+{
+  "timestamp": 1710282079,
+  "total_nodes": 18515,
+  "latest_height": 834418,
+  "nodes": [
+    {
+      "91.209.51.131:8333": [
+        70016,
+        "/Satoshi:0.21.0/",
+        1710345617,
+        1033,
+        834540,
+        "131.51.209.91.it-tv.org",
+        834542,
+        "UA",
+        50.4522,
+        30.5287,
+        "Europe/Kyiv",
+        "AS48239",
+        "Scientific-Production Enterprise Information Technologies Ltd"
+      ]
+    }
+  ]
+}
+```
 
 ## Additional Information
 
