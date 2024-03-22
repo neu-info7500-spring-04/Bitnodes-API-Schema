@@ -71,17 +71,20 @@ components:
       type: array
       items:
         anyOf:
-          - type: integer
+          - type: number
+          - type: string
+          - type: number
+          - type: number
+          - type: number
+          - type: string
+          - type: string
           - type: string
           - type: number
           - type: number
           - type: string
-          - type: number
           - type: string
           - type: string
-          - type: string
-          - type: string
-      maxItems: 10
+      maxItems: 13
       examples:
         [
           "91.209.51.131:8333":
